@@ -1,9 +1,26 @@
-<!-- footer.php -->
-<footer class="footer fixed-bottom">
-    <div class="container">
-        <p>&copy; 2024 Task Manager App</p>
-    </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="../controller/app.js"></script> <!-- Chemin d'accès corrigé pour le fichier JavaScript -->
+<?php
+if (!defined('BASE_URL')) {
+    define('BASE_URL', '/project-task-manager/src/');
+}
+?>
+<div class="container text-center">
+        <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <p>&copy; 2024 Task Manager App</p>
+            </div>
+            <div class="col-md-6">
+                <a href="https://facebook.com" target="_blank" class="text-white me-3">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="text-white me-3">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="text-white me-3">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="text-white">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+</div>

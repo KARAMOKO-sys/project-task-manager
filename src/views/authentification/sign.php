@@ -1,52 +1,42 @@
 <?php
 require_once '../../database/db-config.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
-
-    // Vérifier si les mots de passe correspondent
-    if ($password !== $confirmPassword) {
-        echo "Les mots de passe ne correspondent pas.";
-        exit;
-    }
-
-    // Créer l'utilisateur
-    if ($userManager->createUser($email, $password)) {
-        // Rediriger vers la page de connexion
-        header("Location: login.php");
-        exit;
-    } else {
-        echo "Erreur lors de l'enregistrement de l'utilisateur.";
-    }
-}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/project-task-manager/src/config.php';
+require_once '../../handler/exception-global.php';
+require_once '../../controller/verify-sign.php';
+require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php';
 ?>
 
-<?php include '../../views/partials/header.php'; ?>
+<style>
+    .mt-custom {
+        margin-top: -1rem; /* Ajustez cette valeur selon vos besoins */
+    }
+</style>
 
-<div class="container mt-5">
+<div class="container mt-custom">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg">
                 <div class="card-body">
-                    <h2 class="text-center mb-4">Sign Up</h2>
-                    <!-- Formulaire d'inscription -->
-                    <form action="sign.php" method="post"> <!-- Modifier l'action pour pointer vers sign.php -->
+                    <h2 class="text-center mb-1">Sign Up</h2>
+                    <form action="sign.php" method="post" novalidate>
+                        <div class="mb-3">
+                            <label for="full_name" class="form-label">Full name</label>
+                            <input type="text" class="form-control form-control-sm mb-2 w-100" id="full_name" name="full_name" required>
+                        </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control form-control-sm mb-2" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control form-control-sm mb-2" id="password" name="password" required>
                         </div>
                         <div class="mb-3">
                             <label for="confirm_password" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                            <input type="password" class="form-control form-control-sm mb-2" id="confirm_password" name="confirm_password" required>
                         </div>
-                        <div class="d-flex">
-                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
                         </div>
                     </form>
                 </div>
@@ -58,3 +48,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 <?php include '../../views/partials/footer.php'; ?>
+<script src="<?php echo BASE_URL; ?>js/sign.js"></script>

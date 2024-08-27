@@ -1,0 +1,65 @@
+body {
+    background: url('<?php echo BASE_URL; ?>/assets/images/contact-background.svg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+.section-title {
+    margin: 50px 0;
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: #007bff;
+}
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.contact-form .form-label {
+    font-weight: bold;
+    color: #555;
+}
+.contact-form .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+.contact-form .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+.contact-info {
+    text-align: center;
+    margin-top: 50px;
+    color: #333;
+}
+.contact-info h3 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.contact-info p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+.contact-info .icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: #007bff;
+}
+.map-container {
+    margin-top: 50px;
+    text-align: center;
+}
+.map-container iframe {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+}

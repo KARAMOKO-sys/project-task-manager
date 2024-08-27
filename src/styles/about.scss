@@ -1,0 +1,63 @@
+body {
+    background: url('<?php echo BASE_URL; ?>/assets/images/background-pattern.svg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+.section-title {
+    margin: 50px 0;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #007bff;
+}
+.about-section {
+    padding: 50px 0;
+}
+.about-section img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.team-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.team-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.team-card img {
+    border-radius: 50%;
+    max-width: 150px;
+    margin: -50px auto 10px;
+    display: block;
+}
+.team-card h4 {
+    margin-bottom: 5px;
+}
+.accordion-button {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px;
+    border: 1px solid #007bff;
+}
+.accordion-button:not(.collapsed) {
+    color: #fff;
+    background-color: #0056b3;
+    box-shadow: none;
+}
+.accordion-body {
+    background-color: #f8f9fa;
+}
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+

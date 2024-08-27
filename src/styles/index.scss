@@ -1,0 +1,75 @@
+.carousel-item img {
+    max-height: 70vh;
+    object-fit: cover;
+    width: 100%;
+}
+.carousel {
+    margin-bottom: 0;
+}
+.section-title {
+    margin: 50px 0;
+    font-size: 2.5rem;
+    text-align: center;
+}
+.features, .testimonials {
+    padding: 50px 0;
+}
+.feature-icon {
+    font-size: 3rem;
+    color: #007bff;
+}
+.testimonial {
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.testimonial p {
+    font-style: italic;
+}
+
+
+.section-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+}
+.card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.card-body {
+    padding: 20px;
+}
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination .page-link {
+    color: #007bff;
+}
+.pagination .page-link:hover {
+    color: #0056b3;
+}
+

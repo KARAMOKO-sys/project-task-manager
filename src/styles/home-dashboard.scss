@@ -1,0 +1,70 @@
+body {
+    padding-top: 56px;
+}
+.sidebar {
+    height: 100%;
+    position: fixed;
+    top: 56px; /* Hauteur de la navbar */
+    left: 0;
+    width: 250px;
+    overflow-y: auto;
+    padding-top: 1rem;
+    background-color: #f8f9fa;
+}
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+.navbar-nav .nav-item .nav-link {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+.navbar-nav .nav-item .nav-link .fa {
+    margin-right: 0.5rem;
+}
+.navbar-brand img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+.sidebar .btn {
+    text-align: left;
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s;
+}
+.sidebar .btn:hover {
+    background-color: #e2e6ea;
+}
+.task-list .task-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.task-list .task-item:hover {
+    background-color: #f8f9fa;
+}
+.task-form {
+    margin-bottom: 20px;
+}
+.alert-container {
+    position: fixed;
+    top: 70px; /* Ajuste selon la hauteur de la navbar */
+    right: 20px;
+    z-index: 9999;
+}
+.alert {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+#clock {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+.stat-card {
+    margin-bottom: 20px;
+}

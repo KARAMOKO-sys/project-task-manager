@@ -1,29 +1,49 @@
-<!-- functionality.php -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
-    <link rel="stylesheet" href="../styles/styles.css"> <!-- Chemin d'accès corrigé pour le fichier CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<head>    
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/project-task-manager/src/config.php';?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php'; ?>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/styles/functionality.scss">
 </head>
 <body>
-    <header>
-        <?php include '../views/partials/header.php'; ?>
-    </header>
+<div class="container-fluid">
+    <div class="container mt-5 pt-4">
+        <h1 class="section-title">Nos Fonctionnalités</h1>
 
+    <!-- Section des Alertes -->
+    <div class="alert alert-custom alert-dismissible fade show bg-primary" role="alert">
+            <strong>Découvrez Nos Fonctionnalités !</strong> Explorez les outils puissants que nous avons mis en place pour vous aider à gérer vos tâches et vos projets plus efficacement.
+            <button type="button" class="btn-close" id="closeAlertButton" aria-label="Close"></button>
+    </div>
+
+
+    <!-- Section des Cartes de Fonctionnalités -->
     <div class="container">
-        <div class="text-center">
-            <div>
-                Fonctionnality
-            </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5" id="features-container">
+            <!-- Les cartes de fonctionnalités seront injectées ici -->
         </div>
     </div>
 
+     <!-- Section des Onglets pour en savoir plus -->
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-tabs" id="featureIcons" role="tablist">
+                <!-- Les onglets seront générés ici par JavaScript -->
+            </ul>
+            <div class="tab-content mt-3" id="featureDescription">
+                <!-- Le contenu des onglets sera généré ici par JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
     <footer>
-        <?php include '../views/partials/footer.php'; ?>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/footer.php'; ?>
+        <script src="<?php echo BASE_URL; ?>js/functionality.js"></script>
     </footer>
+    
 </body>
 </html>
