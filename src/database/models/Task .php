@@ -1,68 +1,216 @@
 <!-- Task.php -->
 <?php
 class Task {
-    private $task_id;
-    private $user_id;
-    private $title;
-    private $description;
+    private $id;
+    private $userId;
+    private $categoryId;
+    private $priorityId;
+    private $taskName;
+    private $taskDescription;
+    private $statusId;
+    private $dueDate;
+    private $createdAt;
+    private $updatedAt;
     private $status;
-    private $priority;
-    private $due_date;
 
-    public function getTaskId() {
-        return $this->task_id;
+
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
-    public function setTaskId($task_id) {
-        $this->task_id = $task_id;
+    /**
+     * Set the value of id
+     */
+    public function setId($id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
-    public function getUserId() {
-        return $this->user_id;
+    /**
+     * Get the value of userId
+     */
+    public function getUserId()
+    {
+        return $this->userId;
     }
 
-    public function setUserId($user_id) {
-        $this->user_id = $user_id;
+    /**
+     * Set the value of userId
+     */
+    public function setUserId($userId): self
+    {
+        $this->userId = $userId;
+
+        return $this;
     }
 
-    public function getTitle() {
-        return $this->title;
+    /**
+     * Get the value of categoryId
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
     }
 
-    public function setTitle($title) {
-        $this->title = $title;
+    /**
+     * Set the value of categoryId
+     */
+    public function setCategoryId($categoryId): self
+    {
+        $this->categoryId = $categoryId;
+
+        return $this;
     }
 
-    public function getDescription() {
-        return $this->description;
+    /**
+     * Get the value of priorityId
+     */
+    public function getPriorityId()
+    {
+        return $this->priorityId;
     }
 
-    public function setDescription($description) {
-        $this->description = $description;
+    /**
+     * Set the value of priorityId
+     */
+    public function setPriorityId($priorityId): self
+    {
+        $this->priorityId = $priorityId;
+
+        return $this;
     }
 
-    public function getStatus() {
+    /**
+     * Get the value of taskName
+     */
+    public function getTaskName()
+    {
+        return $this->taskName;
+    }
+
+    /**
+     * Set the value of taskName
+     */
+    public function setTaskName($taskName): self
+    {
+        $this->taskName = $taskName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of taskDescription
+     */
+    public function getTaskDescription()
+    {
+        return $this->taskDescription;
+    }
+
+    /**
+     * Set the value of taskDescription
+     */
+    public function setTaskDescription($taskDescription): self
+    {
+        $this->taskDescription = $taskDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of statusId
+     */
+    public function getStatusId()
+    {
+        return $this->statusId;
+    }
+
+    /**
+     * Set the value of statusId
+     */
+    public function setStatusId($statusId): self
+    {
+        $this->statusId = $statusId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dueDate
+     */
+    public function getDueDate()
+    {
+        return $this->dueDate;
+    }
+
+    /**
+     * Set the value of dueDate
+     */
+    public function setDueDate($dueDate): self
+    {
+        $this->dueDate = $dueDate;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set the value of createdAt
+     */
+    public function setCreatedAt($createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     */
+    public function setUpdatedAt($updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     */
+    public function getStatus()
+    {
         return $this->status;
     }
 
-    public function setStatus($status) {
+    /**
+     * Set the value of status
+     */
+    public function setStatus($status): self
+    {
         $this->status = $status;
-    }
 
-    public function getPriority() {
-        return $this->priority;
-    }
-
-    public function setPriority($priority) {
-        $this->priority = $priority;
-    }
-
-    public function getDueDate() {
-        return $this->due_date;
-    }
-
-    public function setDueDate($due_date) {
-        $this->due_date = $due_date;
+        return $this;
     }
 }
 ?>
