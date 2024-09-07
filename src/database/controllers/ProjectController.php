@@ -1,40 +1,57 @@
 <?php
 
-namespace App\Controllers;
+/**
+ namespace App\Controllers;
 
-use App\Services\ProjectService;
+use App\Services\PriorityService;
 
 class ProjectController
 {
-    private $projectService;
+    private $priorityService;
 
-    public function __construct(ProjectService $projectService)
+    public function __construct(PriorityService $priorityService)
     {
-        $this->projectService = $projectService;
+        $this->priorityService = $priorityService;
     }
 
-    public function listProjects()
+    public function listPriorities()
     {
-        $projects = $this->projectService->getAllProjects();
-        include __DIR__ . '/../views/projects/list.php';
+        $priorities = $this->priorityService->getAllPriorities();
+        include __DIR__ . '/../views/priorities/list.php';
     }
 
-    public function viewProject($id)
+    public function viewPriority($id)
     {
-        $project = $this->projectService->getProjectById($id);
-        include __DIR__ . '/../views/projects/view.php';
+        $priority = $this->priorityService->getPriorityById($id);
+        include __DIR__ . '/../views/priorities/view.php';
     }
 
-    public function createProject()
+    public function createPriority()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Process the POST request to create a project
-            //$this->projectService->createProject($_POST['name'], $_POST['description']);
-            header('Location: /projects');
-            exit; // Ajout d'une sortie après la redirection pour éviter l'exécution continue
+            $this->priorityService->createPriority($_POST['name'], $_POST['level']);
+            header('Location: /priorities');
         } else {
-            include __DIR__ . '/../views/projects/create.php';
+            include __DIR__ . '/../views/priorities/create.php';
         }
     }
+
+    public function updatePriority($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->priorityService->updatePriority($id, $_POST['name'], $_POST['level']);
+            header('Location: /priorities');
+        } else {
+            $priority = $this->priorityService->getPriorityById($id);
+            include __DIR__ . '/../views/priorities/update.php';
+        }
+    }
+
+    public function deletePriority($id)
+    {
+        $this->priorityService->deletePriority($id);
+        header('Location: /priorities');
+    }
 }
+ */
 ?>

@@ -1,10 +1,11 @@
 <?php
-// homeController.php
-require_once '../../database/db-config.php';
+// src/controller/view-dashboard/home-controller.php
+
+require_once __DIR__ . '/../../database/db-config.php';
 
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: /project-task-manager/src/views/login.php"); // Chemin ajusté pour le fichier login.php
     exit;
 }
 
@@ -13,7 +14,7 @@ $userId = $_SESSION['user_id'];
 // Initialisation des variables
 $tasks = [];
 $stats = null;
-$username = 'Nom d\'utilisateur';
+$username = 'Nom d\'utilisateur'; // Initialisation par défaut
 
 if (isset($db)) {
     // Récupérer le nom de l'utilisateur
@@ -21,8 +22,14 @@ if (isset($db)) {
     $stmtUser = $db->prepare($sqlUser);
     $stmtUser->execute([$userId]);
     $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+      // Afficher le contenu de $user sur la page HTML
+      echo '<pre>'; // Utilisé pour formater la sortie
+      var_dump($user);
+      echo '</pre>';
+      
     if ($user) {
-        $username = $user['full_name'];
+        $username = $user['full_name']; // Mise à jour de $username avec la valeur réelle
     }
 
     // Récupérer les tâches
@@ -43,6 +50,6 @@ if (isset($db)) {
     $stats = $stmtStats->fetch(PDO::FETCH_ASSOC);
 }
 
-// Inclure la vue
-include '../../views/dashboard/home-dashboard.php';
+// Inclure la vue du tableau de bord
+require __DIR__ . '/../../views/dashboard/home-dashboard.php';
 ?>

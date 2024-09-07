@@ -1,11 +1,9 @@
-
-
 <?php
 
 namespace App\Services;
 
 use App\Repositories\ProjectRepository;
-use App\Models\Project;
+use Project;
 
 class ProjectService
 {

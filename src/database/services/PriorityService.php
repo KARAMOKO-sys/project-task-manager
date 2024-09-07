@@ -5,7 +5,8 @@ namespace App\Services;
 use App\Repositories\PriorityRepository;
 use App\Models\Priority;
 
-class PriorityService
+/**
+ class PriorityService
 {
     private $priorityRepository;
 
@@ -47,4 +48,7 @@ class PriorityService
         $this->priorityRepository->delete($id);
     }
 }
+ */
+
+
 ?>

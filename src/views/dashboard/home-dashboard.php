@@ -32,11 +32,6 @@
         $stmtUser->execute([$userId]);
         $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
-        // Afficher le contenu de $user sur la page HTML
-        echo '<pre>'; // Utilisé pour formater la sortie
-        var_dump($user);
-        echo '</pre>';
-
         if ($user) {
             $username = $user['full_name'];
         } else {
@@ -92,7 +87,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><img src="https://via.placeholder.com/30" alt="Photo de profil"></a>
-                <span class="text-white"><?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?></span>
+                <span class="text-white"><?php echo isset($username) ? htmlspecialchars($username, ENT_QUOTES, 'UTF-8') : 'Utilisateur'; ?></span>
                 </li>
         </ul>
     </div>
@@ -117,167 +112,32 @@
             <button class="btn" onclick="showSection('statistics')"><i class="fa fa-chart-bar"></i> Statistiques</button>
         </li>
         <li class="nav-item">
-            <button class="btn" onclick="showSection('integrations')"><i class="fa fa-layer-group"></i> Intégrations</button>
+            <button class="btn" onclick="showSection('integrations')"><i class="fa fa-plug"></i> Intégrations</button>
         </li>
     </ul>
 </div>
 
-<!-- Content -->
-<div class="content">
-    <!-- Notifications -->
-    <div id="notifications" class="alert-container">
-        <!-- Notifications seront insérées ici par JavaScript -->
+<!-- Main Content -->
+<div class="container-fluid">
+    <div id="dashboard" class="content-section">
+        <h1 class="h2">Bienvenue dans le Tableau de Bord</h1>
+        <!-- Contenu du tableau de bord -->
     </div>
 
-    <!-- Horloge -->
-    <div id="clock" class="mb-4"></div>
-
-    <div id="dashboard">
-        <h1 class="h2">Tableau de Bord</h1>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Tâches en cours</h5>
-                        <p class="card-text">
-                <?php 
-                if (isset($stats)) {
-                    echo $stats['tasks_in_progress'];
-                } else {
-                    echo "N/A"; // Message par défaut si les stats ne sont pas disponibles
-                }
-                ?>
-            </p>                    
-        </div>
-    </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Tâches terminées</h5>
-                        <p class="card-text">
-                <?php 
-                if (isset($stats)) {
-                    echo $stats['tasks_in_progress'];
-                } else {
-                    echo "N/A"; // Message par défaut si les stats ne sont pas disponibles
-                }
-                ?>
-            </p>                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Tâches en retard</h5>
-                        <p class="card-text">
-                <?php 
-                if (isset($stats)) {
-                    echo $stats['tasks_in_progress'];
-                } else {
-                    echo "N/A"; // Message par défaut si les stats ne sont pas disponibles
-                }
-                ?>
-            </p>                   
-        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-            <!--Gestion Tâche-->
-            <div id="tasks" style="display: none;">
-        <h1 class="h2">Gestion des Tâches</h1>
-        <div class="task-form">
-            <form id="addTaskForm">
-                <div class="form-group">
-                    <label for="taskName">Nom de la Tâche</label>
-                    <input type="text" class="form-control" id="taskName" required>
-                </div>
-                <div class="form-group">
-                    <label for="taskDescription">Description</label>
-                    <textarea class="form-control" id="taskDescription" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Ajouter la Tâche</button>
-            </form>
-        </div>
-        <div class="task-list">
-            <?php foreach ($tasks as $task): ?>
-                <div class="task-item">
-                <p class="card-text">
-                <?php 
-                if (isset($stats)) {
-                    echo $stats['tasks_in_progress'];
-                } else {
-                    echo "N/A"; // Message par défaut si les stats ne sont pas disponibles
-                }
-                ?>
-            </p>              
-        </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-
-     <!--Rapport-->
-    <div id="reports" style="display: none;">
-        <h1 class="h2">Rapports</h1>
-    </div>
-
-     <!--Client-->
-    <div id="clients" style="display: none;">
-        <h1 class="h2">Clients</h1>
-    </div>
-    
-    <!--Statisque-->
-    <div id="statistics" style="display: none;">
-        <h1 class="h2">Statistiques</h1>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm stat-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Tâches en cours</h5>
-                        <p class="card-text"><?php echo $stats['tasks_in_progress']; ?></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm stat-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Tâches terminées</h5>
-                        <p class="card-text">
-                <?php 
-                if (isset($stats)) {
-                    echo $stats['tasks_in_progress'];
-                } else {
-                    echo "N/A"; // Message par défaut si les stats ne sont pas disponibles
-                }
-                ?>
-            </p>                   
-        </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm stat-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Tâches en retard</h5>
-                        <p class="card-text"><?php echo $stats['tasks_overdue']; ?></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Intégrations-->
-    <div id="integrations" style="display: none;">
-        <h1 class="h2">Intégrations</h1>
-    </div>
+    <!-- Inclure les sections depuis les fichiers -->
+    <?php
+    include 'tache-dashboard.php';
+    include 'rapport-dashboard.php';
+    include 'client-dashboard.php';
+    include 'statisque-dashboard.php';
+    include 'integration-dashboard.php';
+    ?>
 </div>
 
-<!-- JavaScript de Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-<script src="<?php echo BASE_URL; ?>js/home-dashboard.js"></script>
+<script src="<?php echo BASE_URL; ?>/js/main.js"></script>
+
 </body>
 </html>

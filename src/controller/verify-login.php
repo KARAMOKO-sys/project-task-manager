@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $user['user_id'];
             
             // Rediriger vers la page home-dashboard.php
-            header("Location: ../dashboard/home-dashboard.php");
+            header("Location: ../../controller/view-dashboard/home-controller.php");
             exit;
         } else {
             // Afficher un message d'erreur si les informations de connexion sont incorrectes

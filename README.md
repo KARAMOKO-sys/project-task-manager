@@ -5,6 +5,9 @@ project-task-manager/
 │   │   ├── AuthController.php    # Contrôleur pour l'authentification
 │   │   ├── DashboardController.php # Contrôleur pour le tableau de bord
 │   │   └── TaskController.php    # Contrôleur pour les tâches
+|       |__ view-dashboard
+            |__home-controller.php
+|
 │   ├── models/                   # Modèles représentant les entités de la base de données
 │   │   ├── User.php              # Modèle pour l'entité utilisateur
 │   │   ├── Task.php              # Modèle pour l'entité tâche

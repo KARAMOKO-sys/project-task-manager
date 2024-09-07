@@ -1,6 +1,7 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+/**
+ use PHPUnit\Framework\TestCase;
 use App\Services\PriorityService;
 use App\Repositories\PriorityRepository;
 use PDO;
@@ -70,4 +71,7 @@ class PriorityServiceTest extends TestCase
         $this->pdo = null;
     }
 }
+ */
+
+
 ?>

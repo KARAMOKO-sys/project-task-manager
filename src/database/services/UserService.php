@@ -7,7 +7,7 @@ use TaskStastues;
 use App\Exceptions\ServiceException;
 use DateTime;
 
-class TeamMembersService {
+class UserService {
 
     private $taskStastuesRepository;
 
