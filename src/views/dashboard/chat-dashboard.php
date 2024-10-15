@@ -30,33 +30,34 @@
 <div class="container">
 
     <!-- Main Content -->
-<style>
+    <style>
         body {
             background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
         }
 
         .container {
             margin-top: 20px;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 7rem;
         }
 
         h1 {
             font-size: 2.5em;
             color: #333;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .chat-box {
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 10px;
             padding: 15px;
             height: 300px;
             overflow-y: auto;
             background-color: #f8f9fa;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .chat-box .message {
@@ -72,24 +73,83 @@
             margin-top: 5px;
         }
 
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        textarea {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            flex-grow: 1;
+        }
+
         .btn-primary {
             background-color: #007bff;
             border: none;
+            margin-left: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
             background-color: #0056b3;
         }
 
-        textarea {
+        .btn-attachment {
+            background-color: #6c757d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-attachment:hover {
+            background-color: #5a6268;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .chat-header h2 {
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        .filter-date {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .filter-date input {
+            border: 1px solid #ddd;
+            padding: 5px 10px;
             border-radius: 5px;
         }
+
     </style>
+
 </head>
 
 <body>
     <div class="container">
-        <h1>Discussions</h1>
+        <div class="chat-header">
+            <h2>Discussions</h2>
+            <div class="filter-date">
+                <input type="date" id="filterDate" placeholder="Filtrer par date">
+            </div>
+        </div>
         <div class="chat-box" id="chatBox">
             <!-- Chat messages will be displayed here -->
             <div class="message">
@@ -101,8 +161,12 @@
                 <div class="text">Ça va bien, merci ! Et toi ?</div>
             </div>
         </div>
-        <textarea id="messageInput" class="form-control" rows="3" placeholder="Tapez votre message ici..."></textarea>
-        <button id="sendMessage" class="btn btn-primary mt-2">Envoyer</button>
+
+        <div class="input-group">
+            <textarea id="messageInput" class="form-control" rows="3" placeholder="Tapez votre message ici..."></textarea>
+            <button id="sendMessage" class="btn btn-primary">Envoyer</button>
+            <button id="attachFile" class="btn btn-attachment">Joindre un fichier</button>
+        </div>
     </div>
 
     <script>
@@ -122,6 +186,16 @@
             } else {
                 alert('Veuillez entrer un message.');
             }
+        });
+
+        document.getElementById('attachFile').addEventListener('click', function() {
+            alert('Fonctionnalité de fichier attaché à implémenter.');
+        });
+
+        document.getElementById('filterDate').addEventListener('change', function() {
+            var filterDate = this.value;
+            // Logique de filtrage par date à implémenter
+            alert('Filtrage par date sélectionnée : ' + filterDate);
         });
     </script>
 

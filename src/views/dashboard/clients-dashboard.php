@@ -28,7 +28,6 @@
 <?php renderSidebar(); ?>
 
 <div class="container">
-
     <!-- Main Content -->
      <style>
         body {
@@ -38,9 +37,6 @@
         .container {
             margin-top: 20px;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
@@ -94,12 +90,74 @@
         table.dataTable tbody tr:hover {
             background-color: #e9ecef;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        .title {
+            margin-left: 2rem;
+        }
+
+        #clientsTable {
+            margin-left: 2rem;
+        }
+
+        #addClient {
+            margin-left: 2rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Clients</h1>
+        <div class="title">
+            <h1>Clients</h1>
+        </div>
         <table id="clientsTable" class="display table table-striped table-bordered">
             <thead>
                 <tr>
@@ -110,38 +168,96 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Dynamically loaded clients here -->
+                <tr>
+                    <td>Jean Dupont</td>
+                    <td>jean.dupont@example.com</td>
+                    <td>0123456789</td>
+                    <td>
+                        <button class="btn-edit btn btn-sm me-2">Modifier</button>
+                        <button class="btn-delete btn btn-sm">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Marie Curie</td>
+                    <td>marie.curie@example.com</td>
+                    <td>0987654321</td>
+                    <td>
+                        <button class="btn-edit btn btn-sm me-2">Modifier</button>
+                        <button class="btn-delete btn btn-sm">Supprimer</button>
+                    </td>
+                </tr>
             </tbody>
         </table>
 
         <button id="addClient" class="btn-add-client btn btn-lg mt-3">Ajouter un Client</button>
     </div>
 
+    <!-- Modal for Adding a Client -->
+    <div id="addClientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ajouter un nouveau client</h2>
+            <form id="addClientForm">
+                <div class="form-group">
+                    <label for="clientName">Nom:</label>
+                    <input type="text" id="clientName" name="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientEmail">Email:</label>
+                    <input type="email" id="clientEmail" name="clientEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Téléphone:</label>
+                    <input type="text" id="clientPhone" name="clientPhone" required>
+                </div>
+                <button type="submit" class="btn-add-client btn btn-lg">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        $(document).ready(function() {
-            var clientsTable = $('#clientsTable').DataTable({
-                ajax: 'fetch-clients.php',
-                columns: [
-                    { data: 'nom' },
-                    { data: 'email' },
-                    { data: 'telephone' },
-                    { data: null, render: function(data) {
-                        return '<button class="btn-edit btn btn-sm me-2">Modifier</button>' +
-                               '<button class="btn-delete btn btn-sm">Supprimer</button>';
-                    }}
-                ]
+        $(document).ready(function () {
+            var clientsTable = $('#clientsTable').DataTable();
+
+            // Open modal on button click
+            $('#addClient').click(function () {
+                $('#addClientModal').show();
             });
 
-            $('#addClient').click(function() {
-                alert('Ajouter un nouveau client');
-                // Ajouter un client logic here
+            // Close modal when clicking close button
+            $('.close').click(function () {
+                $('#addClientModal').hide();
             });
 
-            $('#clientsTable').on('click', '.btn-delete', function() {
+            // Add client form submission
+            $('#addClientForm').submit(function (e) {
+                e.preventDefault();
+
+                var clientName = $('#clientName').val();
+                var clientEmail = $('#clientEmail').val();
+                var clientPhone = $('#clientPhone').val();
+
+                // Add new client to table
+                clientsTable.row.add({
+                    '0': clientName,
+                    '1': clientEmail,
+                    '2': clientPhone,
+                    '3': '<button class="btn-edit btn btn-sm me-2">Modifier</button><button class="btn-delete btn btn-sm">Supprimer</button>'
+                }).draw();
+
+                // Close modal
+                $('#addClientModal').hide();
+
+                // Clear form fields
+                $('#clientName').val('');
+                $('#clientEmail').val('');
+                $('#clientPhone').val('');
+            });
+
+            // Delete client row
+            $('#clientsTable').on('click', '.btn-delete', function () {
                 var row = clientsTable.row($(this).parents('tr'));
-                var data = row.data();
                 if (confirm('Voulez-vous vraiment supprimer ce client?')) {
-                    // Suppression logic here (ex. AJAX request)
                     row.remove().draw();
                 }
             });
@@ -150,12 +266,12 @@
 
     <footer>
         <?php
-            $file = __DIR__ . '/partials-dashboard/footer-dashboard.php';
-            if (file_exists($file)) {
-                require_once $file;
-            } else {
-                echo "Le fichier $file n'existe pas.";
-            }
+        $file = __DIR__ . '/partials-dashboard/footer-dashboard.php';
+        if (file_exists($file)) {
+            require_once $file;
+        } else {
+            echo "Le fichier $file n'existe pas.";
+        }
         ?>
     </footer>
 </div>

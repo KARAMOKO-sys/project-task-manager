@@ -5,25 +5,7 @@ session_start();
 require_once '../../database/db-config.php';
 require_once '../../handler/exception-global.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $token = $_POST['token'];
-    $newPassword = $_POST['new_password'];
-    $confirmPassword = $_POST['confirm_password'];
 
-    if ($newPassword !== $confirmPassword) {
-        echo "Passwords do not match.";
-        exit;
-    }
-
-    $user = $userManager->getUserByResetToken($token);
-
-    if ($user) {
-        $userManager->updatePassword($user['user_id'], $newPassword);
-        echo "Your password has been reset successfully.";
-    } else {
-        echo "Invalid token.";
-    }
-}
 ?>
 
 <!DOCTYPE html>

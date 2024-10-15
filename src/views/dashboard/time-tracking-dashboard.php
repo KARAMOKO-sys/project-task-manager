@@ -19,6 +19,79 @@
             echo "Le fichier $file n'existe pas.";
         }
     ?>
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            margin-left: 3rem;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #007bff;
+        }
+
+        .task-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .task-table th, .task-table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .task-table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-custom:hover {
+            background-color: #218838;
+        }
+
+        .modal-header {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .modal-footer {
+            justify-content: space-between;
+        }
+
+        .modal-body {
+            margin: 20px;
+        }
+        .container {
+            margin-left: 20rem;
+            margin-top: 5rem;
+        }
+    </style>
 </head>
 
 <?php
@@ -32,8 +105,107 @@
     <!-- Main Content -->
     <div id="dashboard" class="content-section">
         <div class="row">
-            <div class="col-md-8 offset-md-1 mt-4">
-                <h1 class="h2">Time-Tracking task manager</h1>
+            <div class="title">
+                <h1 class="h2 m-5">Time-Tracking Task Manager</h1>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#addTaskModal">Ajouter une Tâche</button>
+        </div>
+        <table class="task-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date de Début</th>
+                    <th>Date de Fin</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="taskList">
+                <tr>
+                    <td>1</td>
+                    <td>Développer l'API</td>
+                    <td>Créer une API REST pour gérer les utilisateurs.</td>
+                    <td>2024-09-01</td>
+                    <td>2024-09-15</td>
+                    <td>Terminé</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editTask(this)">Modifier</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Conception de la Base de Données</td>
+                    <td>Modéliser la base de données pour le projet.</td>
+                    <td>2024-09-10</td>
+                    <td>2024-09-20</td>
+                    <td>En cours</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editTask(this)">Modifier</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Test Unitaire</td>
+                    <td>Écrire des tests unitaires pour les fonctionnalités principales.</td>
+                    <td>2024-09-05</td>
+                    <td>2024-09-10</td>
+                    <td>À faire</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editTask(this)">Modifier</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTaskModalLabel">Ajouter une Tâche</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTaskForm">
+                        <div class="mb-3">
+                            <label for="taskTitle" class="form-label">Titre</label>
+                            <input type="text" class="form-control" id="taskTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="taskDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="taskDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="taskStartDate" class="form-label">Date de Début</label>
+                            <input type="date" class="form-control" id="taskStartDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="taskEndDate" class="form-label">Date de Fin</label>
+                            <input type="date" class="form-control" id="taskEndDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="taskStatus" class="form-label">Statut</label>
+                            <select class="form-select" id="taskStatus" required>
+                                <option value="" disabled selected>Choisir un statut</option>
+                                <option value="À faire">À faire</option>
+                                <option value="En cours">En cours</option>
+                                <option value="Terminé">Terminé</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-custom" id="saveTask">Ajouter Tâche</button>
+                </div>
             </div>
         </div>
     </div>
@@ -50,3 +222,47 @@
     </footer>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const taskList = document.getElementById('taskList');
+        const saveTaskButton = document.getElementById('saveTask');
+
+        saveTaskButton.addEventListener('click', function() {
+            const title = document.getElementById('taskTitle').value;
+            const description = document.getElementById('taskDescription').value;
+            const startDate = document.getElementById('taskStartDate').value;
+            const endDate = document.getElementById('taskEndDate').value;
+            const status = document.getElementById('taskStatus').value;
+
+            if (title && description && startDate && endDate && status) {
+                const newRow = `
+                    <tr>
+                        <td>${Date.now()}</td>
+                        <td>${title}</td>
+                        <td>${description}</td>
+                        <td>${startDate}</td>
+                        <td>${endDate}</td>
+                        <td>${status}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick="editTask(this)">Modifier</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Supprimer</button>
+                        </td>
+                    </tr>
+                `;
+                taskList.insertAdjacentHTML('beforeend', newRow);
+                $('#addTaskModal').modal('hide');
+                document.getElementById('addTaskForm').reset();
+            }
+        });
+    });
+
+    function editTask(button) {
+        // Logic to edit the task
+        alert("Modification de la tâche");
+    }
+
+    function deleteTask(button) {
+        const row = button.closest('tr');
+        row.remove();
+    }
+</script>

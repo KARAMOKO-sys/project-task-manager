@@ -1,3 +1,4 @@
+<!-- verify-sign.php -->
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $full_name = $_POST['full_name']; // Ajout de cette ligne pour définir $full_name

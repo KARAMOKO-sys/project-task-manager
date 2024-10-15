@@ -25,7 +25,7 @@
         </div>
     </div>
 
-     <!-- Section des Onglets pour en savoir plus -->
+    <!-- Section des Onglets pour en savoir plus -->
     <div class="row">
         <div class="col-12">
             <ul class="nav nav-tabs" id="featureIcons" role="tablist">

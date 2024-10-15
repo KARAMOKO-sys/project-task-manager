@@ -1,6 +1,5 @@
 <!-- notifications-dashboard.php -->
 <head>
-    <!-- Header and style -->
     <?php
     $file = __DIR__ . '/partials-dashboard/header-dashboard.php';
     if (file_exists($file)) {
@@ -10,7 +9,6 @@
     }
     ?>
 
-    <!-- Navigation -->
     <?php
         $file = __DIR__ . '/partials-dashboard/nav-bar-dashboard.php';
         if (file_exists($file)) {
@@ -24,13 +22,10 @@
 <?php
     require_once __DIR__ . '/partials-dashboard/navigation.php';
 ?>
-<!-- Sidebar -->
 <?php renderSidebar(); ?>
 
 <div class="container">
-
-    <!-- Main Content -->
-     <style>
+    <style>
         body {
             background-color: #f4f6f9;
         }
@@ -38,9 +33,6 @@
         .container {
             margin-top: 20px;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
@@ -77,6 +69,9 @@
             padding: 10px;
             margin-bottom: 10px;
             background-color: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .notification-item h5 {
@@ -87,44 +82,163 @@
         .notification-item p {
             margin: 5px 0;
         }
+
+        .notification-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .title {
+            margin-left: 2rem;
+        }
+
+        .notification-list {
+            margin-left: 2rem;
+        }
+
+        .form-control {
+            margin-bottom: 10px;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+          .container {
+            margin-left: 7rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Notifications</h1>
-        <p>Gestion des notifications.</p>
-        <button id="clearNotifications" class="btn btn-primary btn-lg">Effacer les Notifications</button>
+        <div class="title">
+            <h1>Notifications</h1>
+            <p>Gestion des notifications.</p>
+            <button id="clearNotifications" class="btn btn-primary btn-lg">Effacer les Notifications</button>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="form-control" placeholder="Rechercher une notification...">
+            <button id="searchButton" class="btn btn-primary">Rechercher</button>
+        </div>
+
+        <form id="filterForm">
+            <div class="form-group">
+                <label for="statusFilter">Filtrer par statut :</label>
+                <select id="statusFilter" class="form-control">
+                    <option value="all">Tous</option>
+                    <option value="read">Lues</option>
+                    <option value="unread">Non lues</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dateFilter">Filtrer par date :</label>
+                <input type="date" id="dateFilter" class="form-control">
+            </div>
+
+            <button type="button" id="applyFilter" class="btn btn-secondary">Appliquer les filtres</button>
+        </form>
 
         <div class="notification-list">
             <h2>Notifications Récentes</h2>
-            <!-- Exemple de notification -->
-            <div class="notification-item">
-                <h5>Nouvelle Notification</h5>
-                <p><strong>Date:</strong> 15 septembre 2024</p>
-                <p><strong>Message:</strong> Vous avez reçu un nouveau message de l'équipe de support.</p>
-                <button class="btn btn-secondary btn-sm">Voir</button>
-                <button class="btn btn-danger btn-sm">Supprimer</button>
+
+            <div class="notification-item" data-status="unread">
+                <div>
+                    <h5>Nouvelle Notification</h5>
+                    <p><strong>Date:</strong> 15 septembre 2024</p>
+                    <p><strong>Message:</strong> Vous avez reçu un nouveau message de l'équipe de support.</p>
+                </div>
+                <div class="notification-actions">
+                    <button class="btn btn-secondary btn-sm">Voir</button>
+                    <button class="btn btn-danger btn-sm">Supprimer</button>
+                </div>
             </div>
-            <!-- Autres notifications ici -->
+
+            <div class="notification-item" data-status="read">
+                <div>
+                    <h5>Notification Système</h5>
+                    <p><strong>Date:</strong> 14 septembre 2024</p>
+                    <p><strong>Message:</strong> Votre système a été mis à jour avec succès.</p>
+                </div>
+                <div class="notification-actions">
+                    <button class="btn btn-secondary btn-sm">Voir</button>
+                    <button class="btn btn-danger btn-sm">Supprimer</button>
+                </div>
+            </div>
+
+            <div class="notification-item" data-status="unread">
+                <div>
+                    <h5>Alerte de Sécurité</h5>
+                    <p><strong>Date:</strong> 13 septembre 2024</p>
+                    <p><strong>Message:</strong> Une tentative de connexion suspecte a été détectée sur votre compte.</p>
+                </div>
+                <div class="notification-actions">
+                    <button class="btn btn-secondary btn-sm">Voir</button>
+                    <button class="btn btn-danger btn-sm">Supprimer</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('clearNotifications').addEventListener('click', function() {
+        document.getElementById('clearNotifications').addEventListener('click', function () {
             if (confirm('Voulez-vous vraiment effacer toutes les notifications ?')) {
-                // Logique pour effacer toutes les notifications
                 alert('Toutes les notifications ont été effacées');
+                document.querySelectorAll('.notification-item').forEach(item => item.remove());
             }
         });
 
         document.querySelectorAll('.btn-danger').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 if (confirm('Voulez-vous vraiment supprimer cette notification ?')) {
-                    // Logique de suppression ici
                     alert('Notification supprimée');
-                    // Pour une vraie application, vous auriez besoin de supprimer l'élément du DOM ou faire une requête AJAX pour supprimer la notification du serveur
                     this.closest('.notification-item').remove();
+                }
+            });
+        });
+
+        document.getElementById('searchButton').addEventListener('click', function () {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.notification-item').forEach(item => {
+                const message = item.querySelector('p').textContent.toLowerCase();
+                if (message.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('applyFilter').addEventListener('click', function () {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+
+            document.querySelectorAll('.notification-item').forEach(item => {
+                const itemStatus = item.getAttribute('data-status');
+                const itemDate = item.querySelector('p').textContent.split(' ')[1];
+
+                let statusMatch = statusFilter === 'all' || itemStatus === statusFilter;
+                let dateMatch = !dateFilter || itemDate === dateFilter;
+
+                if (statusMatch && dateMatch) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
                 }
             });
         });
@@ -132,12 +246,12 @@
 
     <footer>
         <?php
-            $file = __DIR__ . '/partials-dashboard/footer-dashboard.php';
-            if (file_exists($file)) {
-                require_once $file;
-            } else {
-                echo "Le fichier $file n'existe pas.";
-            }
+        $file = __DIR__ . '/partials-dashboard/footer-dashboard.php';
+        if (file_exists($file)) {
+            require_once $file;
+        } else {
+            echo "Le fichier $file n'existe pas.";
+        }
         ?>
     </footer>
 </div>

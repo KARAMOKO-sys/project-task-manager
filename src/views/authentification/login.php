@@ -11,8 +11,8 @@ require_once '../../controller/verify-login.php';
 <head>
     <?php require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php'; ?>
 </head>
-<body>
-<div class="container mt-5">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container mt-5 flex-grow-1">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow">
@@ -45,9 +45,11 @@ require_once '../../controller/verify-login.php';
     </div>
 </div>
 <footer>
-    <?php require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/footer.php'; ?>
+    <footer class="mt-auto">
+        <?php require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/footer.php'; ?>
+        <script src="<?php echo BASE_URL; ?>js/login.js"></script>
+    </div>
 </footer>
 </body>
 </html>
-<script src="<?php echo BASE_URL; ?>js/login.js"></script>
 

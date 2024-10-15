@@ -37,16 +37,24 @@
         <!-- Informations de contact -->
         <div class="contact-info">
             <h3>Informations de contact</h3>
-            <p><i class="fas fa-envelope icon"></i>Email : <a href="mailto:contact@taskmanager.com">contact@taskmanager.com</a></p>
-            <p><i class="fas fa-phone icon"></i>Téléphone : <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
-            <p><i class="fas fa-map-marker-alt icon"></i>Adresse : 123 Rue de la Productivité, 75000 Paris, France</p>
+            <p>
+                <i class="fas fa-envelope icon"></i>Email : <a href="mailto:contact@taskmanager.com">contact@taskmanager.com</a>
+            </p>
+            <p>
+                <i class="fas fa-phone icon"></i>Téléphone : <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+            </p>
+            <p>
+                <i class="fas fa-map-marker-alt icon"></i>Adresse : 123 Rue de la Productivité, 75000 Paris, France
+            </p>
         </div>
 
         <!-- Google Maps -->
         <div class="map-container">
             <h3 class="section-title">Où nous trouver</h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.935048435012!2d2.330036315674287!3d48.85884477928762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d8d6970777%3A0xe1b7c6bcbfc62d9a!2s123%20Rue%20de%20la%20Productivit%C3%A9%2C%2075000%20Paris%2C%20France!5e0!3m2!1sfr!2sus!4v1677905567543!5m2!1sfr!2sus" 
-                    width="100%" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.935048435012!2d2.330036315674287!3d48.85884477928762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d8d6970777%3A0xe1b7c6bcbfc62d9a!2s123%20Rue%20de%20la%20Productivit%C3%A9%2C%2075000%20Paris%2C%20France!5e0!3m2!1sfr!2sus!4v1677905567543!5m2!1sfr!2sus" 
+            width="100%" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
     </div>
 

@@ -3,13 +3,24 @@
 <html lang="en">
 <head>
     <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/project-task-manager/src/config.php';
+    // Utilisez realpath pour assurer l'obtention d'un chemin correct
+    require_once realpath($_SERVER['DOCUMENT_ROOT'] . '/project-task-manager/src/config.php');
+    
+    // Vérifiez si BASE_URL est bien définie et se termine par un slash.
     if (!defined('BASE_URL')) {
         define('BASE_URL', '/project-task-manager/src/');
-    }?>
-    <?php require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php'; ?>
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/styles/index.scss">
+    }
+    
+    // Utilisez le chemin complet pour éviter toute ambiguïté
+    $headerPath = $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php';
+    //echo "Chemin header.php = " . $headerPath . "<br>";
+    
+    // Inclure le fichier header.php avec le bon chemin
+    require $headerPath;
+    ?>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>styles/index.scss">
 </head>
+
 <body>
 
 <div class="container-fluid p-0">
@@ -52,7 +63,9 @@
     <!-- Section "À propos" -->
     <div class="container">
         <h2 class="section-title">À propos de notre application</h2>
-        <p class="text-center">Task Manager est une application intuitive conçue pour vous aider à organiser vos tâches et projets de manière efficace et simple. Que vous soyez un professionnel ou un étudiant, notre application est adaptée à tous vos besoins de gestion de tâches.</p>
+        <p class="text-center">
+            Task Manager est une application intuitive conçue pour vous aider à organiser vos tâches et projets de manière efficace et simple. Que vous soyez un professionnel ou un étudiant, notre application est adaptée à tous vos besoins de gestion de tâches.
+        </p>
     </div>
 
     <!-- Section "Fonctionnalités" -->

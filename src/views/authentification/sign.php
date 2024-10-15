@@ -1,19 +1,23 @@
 <?php
-require_once '../../database/db-config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/project-task-manager/src/config.php';
-require_once '../../handler/exception-global.php';
-require_once '../../controller/verify-sign.php';
-require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php';
+    require_once '../../database/db-config.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/project-task-manager/src/config.php';
+    require_once '../../handler/exception-global.php';
+    require_once '../../controller/verify-sign.php';
+    require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php';
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>  
 <style>
     .mt-custom {
         margin-top: -1rem; /* Ajustez cette valeur selon vos besoins */
     }
 </style>
+</head>
 
-<div class="container mt-custom">
-    <div class="row justify-content-center">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container mt-5 flex-grow-1">
+        <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
             <div class="card shadow-lg">
                 <div class="card-body">
@@ -47,5 +51,111 @@ require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php';
         </div>
     </div>
 </div>
-<?php include '../../views/partials/footer.php'; ?>
-<script src="<?php echo BASE_URL; ?>js/sign.js"></script>
+</body>
+    <footer>
+        <div class="mt-auto">
+            <?php require $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/footer.php'; ?>
+            <script src="<?php echo BASE_URL; ?>js/sign.js"></script>
+        </div>
+    </footer>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

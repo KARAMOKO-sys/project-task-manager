@@ -1,3 +1,4 @@
+<!-- archives-dashboard.php -->
 <head>
     <!-- Header and style -->
     <?php
@@ -18,6 +19,24 @@
             echo "Le fichier $file n'existe pas.";
         }
     ?>
+
+    <?php
+    // Utilisez realpath pour assurer l'obtention d'un chemin correct
+    require_once realpath($_SERVER['DOCUMENT_ROOT'] . '/project-task-manager/src/config.php');
+    
+    // Vérifiez si BASE_URL est bien définie et se termine par un slash.
+    if (!defined('BASE_URL')) {
+        define('BASE_URL', '/project-task-manager/src/');
+    }
+    
+    // Utilisez le chemin complet pour éviter toute ambiguïté
+    $headerPath = $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'views/partials/header.php';
+    //echo "Chemin header.php = " . $headerPath . "<br>";
+    
+    // Inclure le fichier header.php avec le bon chemin
+    require $headerPath;
+    ?>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>styles/archives.scss">
 </head>
 
 <?php
@@ -25,71 +44,68 @@
 ?>
 <!-- Sidebar -->
 <?php renderSidebar(); ?>
-
-<div class="container">
-
-    <!-- Main Content -->
-       <style>
-        body {
-            background-color: #f4f6f9;
-        }
-
-        .container {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .alert-info {
-            border-radius: 5px;
-        }
-    </style>
-</head>
+=<div class="container">
 
 <body>
     <div class="container">
-        <h1>Archives</h1>
-        <p class="lead">Gestion des éléments archivés.</p>
-        <div class="alert alert-info" role="alert">
-            <strong>Note :</strong> Vous pouvez restaurer des éléments archivés en cliquant sur le bouton ci-dessous. Assurez-vous de vérifier les détails avant de procéder.
+        <div class="archive-header">
+            <h2>Archives</h2>
+            <div class="filter-date">
+                <input type="date" id="filterDate" placeholder="Filtrer par date">
+            </div>
         </div>
-        <button id="restoreArchived" class="btn btn-primary">Restaurer</button>
 
-        <!-- Example of archived items -->
-        <div class="mt-4">
-            <h2>Éléments Archivés</h2>
-            <ul class="list-group">
-                <li class="list-group-item">Élément 1 - Archivage le 01/01/2024</li>
-                <li class="list-group-item">Élément 2 - Archivage le 02/01/2024</li>
-                <li class="list-group-item">Élément 3 - Archivage le 03/01/2024</li>
-            </ul>
+        <div class="archive-list" id="archiveList">
+            <div class="archive-item">
+                <div class="title">Projet A - Rapport final</div>
+                <div class="date">12/01/2024</div>
+            </div>
+            <div class="archive-item">
+                <div class="title">Réunion d'équipe - Notes</div>
+                <div class="date">28/12/2023</div>
+            </div>
+            <div class="archive-item">
+                <div class="title">Présentation des résultats Q3</div>
+                <div class="date">05/11/2023</div>
+            </div>
+            <div class="archive-item">
+                <div class="title">Mise à jour du manuel utilisateur</div>
+                <div class="date">21/10/2023</div>
+            </div>
         </div>
+
+        <button id="loadMore" class="btn btn-primary mt-3">Charger plus</button>
     </div>
 
     <script>
-        document.getElementById('restoreArchived').addEventListener('click', function() {
-            alert('Restaurer les éléments archivés');
-            // Logic to restore archived items here
+        // Sample Data for additional archives
+        var additionalArchives = [
+            { title: 'Rapport d\'audit interne', date: '12/09/2023' },
+            { title: 'Plan de projet - Phase 2', date: '01/08/2023' },
+            { title: 'Résultats des ventes - Juin 2023', date: '30/06/2023' },
+            { title: 'Compte-rendu de réunion de stratégie', date: '15/06/2023' }
+        ];
+
+        document.getElementById('loadMore').addEventListener('click', function() {
+            var archiveList = document.getElementById('archiveList');
+            additionalArchives.forEach(function(archive) {
+                var newArchive = document.createElement('div');
+                newArchive.className = 'archive-item';
+                newArchive.innerHTML = `
+                    <div class="title">${archive.title}</div>
+                    <div class="date">${archive.date}</div>
+                `;
+                archiveList.appendChild(newArchive);
+            });
+            additionalArchives = []; // Clear additional archives once loaded
+        });
+
+        document.getElementById('filterDate').addEventListener('change', function() {
+            var filterDate = this.value;
+            // Implement date filtering logic here
+            alert('Filtrage par date sélectionnée : ' + filterDate);
         });
     </script>
-
 
     <footer>
         <?php

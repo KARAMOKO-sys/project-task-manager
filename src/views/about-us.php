@@ -26,9 +26,10 @@
 
         <!-- Section Mission et Vision -->
         <div class="about-section text-center">
-            <h1 class="section-title">Notre Mission et Vision</h1>er la gestion des tâches et d'améliorer la productivité de nos utilisateurs. 
+            <h1 class="section-title">Notre Mission et Vision</h1>
+            La gestion des tâches et d'améliorer la productivité de nos utilisateurs. 
             Nous croyons en un avenir où chaque individu peut gérer efficacement ses tâches avec des outils intuitifs et puissants.
-            <p>Notre mission est de simplifi</p>
+            <p>Notre mission est de simplifier</p>
         </div>
 
         <!-- Section Équipe -->
@@ -38,8 +39,9 @@
         <!-- Section Histoire -->
         <div class="about-section text-center position-relative">
             <h1 class="section-title">Notre Histoire</h1>
-            <p>Task Manager a été fondé en 2022 avec l'objectif de révolutionner la gestion des tâches. Depuis notre création, 
-                nous avons aidé des milliers d'utilisateurs à organiser leur travail et à atteindre leurs objectifs plus efficacement.
+            <p>
+                Task Manager a été fondé en 2022 avec l'objectif de révolutionner la gestion des tâches. 
+                Depuis notre création, nous avons aidé des milliers d'utilisateurs à organiser leur travail et à atteindre leurs objectifs plus efficacement.
             </p>
         </div>
     </div>

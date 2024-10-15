@@ -32,10 +32,15 @@
     <style>
         body {
             background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
         }
 
         .container {
             margin-top: 20px;
+        }
+
+        h1 {
+            color: #333;
         }
 
         table {
@@ -46,28 +51,56 @@
         .table thead th {
             background-color: #007bff;
             color: white;
+            text-align: center;
+        }
+
+        .table tbody td {
+            text-align: center;
         }
 
         .btn-custom {
             background-color: #007bff;
             color: white;
+            transition: background-color 0.3s ease;
         }
 
         .btn-delete {
             background-color: #dc3545;
             color: white;
+            transition: background-color 0.3s ease;
         }
 
         .btn-custom:hover,
         .btn-delete:hover {
             opacity: 0.9;
         }
+
+        .title {
+            margin-left: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #addMember {
+            margin-left: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #teamTable {
+           margin-left: 3rem;
+        }
+
+        .modal-header {
+            background-color: #007bff;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="mb-4">Équipe</h1>
+        <div class="title">
+            <h1 class="mt-4">Équipe</h1>
+        </div>
         <button id="addMember" class="btn btn-custom mb-3">Ajouter un Membre</button>
         <table id="teamTable" class="display table table-striped table-bordered">
             <thead>
@@ -75,11 +108,35 @@
                     <th>Nom</th>
                     <th>Rôle</th>
                     <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Adresse</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Dynamically loaded team members here -->
+                <tr>
+                    <td>Jean Dupont</td>
+                    <td>Développeur</td>
+                    <td>jean.dupont@example.com</td>
+                    <td>0123456789</td>
+                    <td>123 Rue Exemple, Paris</td>
+                    <td>
+                        <button class="btn btn-custom btn-edit">Modifier</button>
+                        <button class="btn btn-delete btn-delete">Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Marie Curie</td>
+                    <td>Chef de Projet</td>
+                    <td>marie.curie@example.com</td>
+                    <td>0987654321</td>
+                    <td>456 Avenue Exemple, Lyon</td>
+                    <td>
+                        <button class="btn btn-custom btn-edit">Modifier</button>
+                        <button class="btn btn-delete btn-delete">Supprimer</button>
+                    </td>
+                </tr>
+                <!-- More example members can be added here -->
             </tbody>
         </table>
     </div>
@@ -105,6 +162,14 @@
                         <div class="mb-3">
                             <label for="memberEmail" class="form-label">Email</label>
                             <input type="email" class="form-control" id="memberEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="memberPhone" class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" id="memberPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="memberAddress" class="form-label">Adresse</label>
+                            <input type="text" class="form-control" id="memberAddress" required>
                         </div>
                         <button type="submit" class="btn btn-custom">Ajouter</button>
                     </form>
@@ -135,11 +200,16 @@
     <script>
         $(document).ready(function() {
             var teamTable = $('#teamTable').DataTable({
-                ajax: 'fetch-team.php',
+                ajax: {
+                    url: 'fetch-team.php',
+                    dataSrc: ''
+                },
                 columns: [
                     { data: 'nom' },
                     { data: 'role' },
                     { data: 'email' },
+                    { data: 'telephone' },
+                    { data: 'adresse' },
                     { data: null, render: function(data) {
                         return '<button class="btn btn-custom btn-edit">Modifier</button> ' +
                                '<button class="btn btn-delete btn-delete">Supprimer</button>';
@@ -183,5 +253,3 @@
         ?>
     </footer>
 </div>
-
-
