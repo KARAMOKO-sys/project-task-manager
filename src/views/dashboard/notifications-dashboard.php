@@ -1,3 +1,4 @@
+<!-- notifications-dashboard.php -->
 <head>
     <!-- Header and style -->
     <?php
@@ -29,7 +30,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    <style>
+     <style>
         body {
             background-color: #f4f6f9;
         }
@@ -57,20 +58,20 @@
             background-color: #0056b3;
         }
 
-        .btn-secondary {
-            background-color: #6c757d;
+        .btn-danger {
+            background-color: #dc3545;
             border: none;
         }
 
-        .btn-secondary:hover {
-            background-color: #5a6268;
+        .btn-danger:hover {
+            background-color: #c82333;
         }
 
-        .integration-list {
+        .notification-list {
             margin-top: 20px;
         }
 
-        .integration-item {
+        .notification-item {
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 10px;
@@ -78,12 +79,12 @@
             background-color: #f8f9fa;
         }
 
-        .integration-item h5 {
+        .notification-item h5 {
             margin: 0;
             color: #333;
         }
 
-        .integration-item p {
+        .notification-item p {
             margin: 5px 0;
         }
     </style>
@@ -91,39 +92,44 @@
 
 <body>
     <div class="container">
-        <h1>Intégrations</h1>
-        <p>Gestion des intégrations avec d'autres systèmes.</p>
-        <button id="addIntegration" class="btn btn-primary btn-lg">Ajouter une Intégration</button>
+        <h1>Notifications</h1>
+        <p>Gestion des notifications.</p>
+        <button id="clearNotifications" class="btn btn-primary btn-lg">Effacer les Notifications</button>
 
-        <div class="integration-list">
-            <h2>Intégrations existantes</h2>
-            <!-- Exemple d'intégration -->
-            <div class="integration-item">
-                <h5>Intégration XYZ</h5>
-                <p><strong>Status:</strong> Actif</p>
-                <p><strong>Description:</strong> Cette intégration permet de synchroniser les données avec le système XYZ.</p>
-                <button class="btn btn-secondary btn-sm">Détails</button>
+        <div class="notification-list">
+            <h2>Notifications Récentes</h2>
+            <!-- Exemple de notification -->
+            <div class="notification-item">
+                <h5>Nouvelle Notification</h5>
+                <p><strong>Date:</strong> 15 septembre 2024</p>
+                <p><strong>Message:</strong> Vous avez reçu un nouveau message de l'équipe de support.</p>
+                <button class="btn btn-secondary btn-sm">Voir</button>
                 <button class="btn btn-danger btn-sm">Supprimer</button>
             </div>
-            <!-- Autres intégrations ici -->
+            <!-- Autres notifications ici -->
         </div>
     </div>
 
     <script>
-        document.getElementById('addIntegration').addEventListener('click', function() {
-            alert('Ajouter une nouvelle intégration');
-            // Ajouter une intégration logique ici
+        document.getElementById('clearNotifications').addEventListener('click', function() {
+            if (confirm('Voulez-vous vraiment effacer toutes les notifications ?')) {
+                // Logique pour effacer toutes les notifications
+                alert('Toutes les notifications ont été effacées');
+            }
         });
 
         document.querySelectorAll('.btn-danger').forEach(button => {
             button.addEventListener('click', function() {
-                if (confirm('Voulez-vous vraiment supprimer cette intégration ?')) {
+                if (confirm('Voulez-vous vraiment supprimer cette notification ?')) {
                     // Logique de suppression ici
-                    alert('Intégration supprimée');
+                    alert('Notification supprimée');
+                    // Pour une vraie application, vous auriez besoin de supprimer l'élément du DOM ou faire une requête AJAX pour supprimer la notification du serveur
+                    this.closest('.notification-item').remove();
                 }
             });
         });
     </script>
+
     <footer>
         <?php
             $file = __DIR__ . '/partials-dashboard/footer-dashboard.php';

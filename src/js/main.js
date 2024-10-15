@@ -1,14 +1,8 @@
-// scripts/main.js
-function showSection(sectionId) {
-    // Masquer toutes les sections
-    const sections = document.querySelectorAll('.content-section');
-    sections.forEach(section => {
-        section.style.display = 'none';
-    });
+// js/main.js
 
-    // Afficher la section sélectionnée
-    const sectionToShow = document.getElementById(sectionId);
-    if (sectionToShow) {
-        sectionToShow.style.display = 'block';
-    }
+function navigateTo(controller) {
+    window.location.href = '/project-task-manager/src/controller/view-dashboard/' + controller + '.php';
 }
+
+// Assurez-vous que la fonction est disponible globalement
+window.navigateTo = navigateTo;

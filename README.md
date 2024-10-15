@@ -28,16 +28,18 @@ project-task-manager/
 │   └── db-config.php             # Configuration de la base de données
 ├── vendor/                       # Dépendances Composer (comme PHPMailer)
 ├── views/
-│   ├── partials/                 # Éléments de page réutilisables
-│   │   ├── header.php
-│   │   ├── footer.php
+
 │   ├── auth/                     # Pages d'authentification (login, sign up, reset password)
 │   │   ├── login.php
 │   │   ├── sign.php
 │   │   ├── forget-password.php
 │   │   ├── reset-password.php
-│   └── dashboard/                # Pages du tableau de bord après connexion
-│       └── home-dashboard.php
+│   │   └── dashboard/
+│   │       ├── home-dashboard.php
+│   │       └── partials-dashboard/
+│   │       |    └── header-dashboard.php
+│   │       |    ├── footer-dashboard.php
+     
 ├── js/                           # Scripts JavaScript
 │   ├── sign.js                   # Script de gestion du formulaire d'inscription
 │   └── (other scripts)

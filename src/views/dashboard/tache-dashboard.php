@@ -1,26 +1,50 @@
-<link rel="stylesheet" href="<?php echo BASE_URL; ?>/styles/home-dashboard.scss">
-<div id="tasks" style="display: none;">
-    <h1 class="h2">Gestion des Tâches</h1>
-    <div class="task-form">
-        <form id="addTaskForm">
-            <div class="form-group">
-                <label for="taskName">Nom de la Tâche</label>
-                <input type="text" class="form-control" id="taskName" required>
+<head>
+    <!-- Header and style -->
+    <?php
+    $file = __DIR__ . '/partials-dashboard/header-dashboard.php';
+    if (file_exists($file)) {
+        require_once $file;
+    } else {
+        echo "Le fichier $file n'existe pas.";
+    }
+    ?>
+
+    <!-- Navigation -->
+    <?php
+        $file = __DIR__ . '/partials-dashboard/nav-bar-dashboard.php';
+        if (file_exists($file)) {
+            require_once $file;
+        } else {
+            echo "Le fichier $file n'existe pas.";
+        }
+    ?>
+</head>
+
+<?php
+    require_once __DIR__ . '/partials-dashboard/navigation.php';
+?>
+<!-- Sidebar -->
+<?php renderSidebar(); ?>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div id="dashboard" class="content-section">
+        <div class="row">
+            <div class="col-md-8 offset-md-1 mt-4">
+                <h1 class="h2">Tâche task manager</h1>
             </div>
-            <div class="form-group">
-                <label for="taskDescription">Description</label>
-                <textarea class="form-control" id="taskDescription" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Ajouter la Tâche</button>
-        </form>
+        </div>
     </div>
-    <div class="task-list">
-        <?php foreach ($tasks as $task): ?>
-            <div class="task-item">
-                <p class="card-text">
-                    <?php echo htmlspecialchars($task['task_name'], ENT_QUOTES, 'UTF-8'); ?>
-                </p>
-            </div>
-        <?php endforeach; ?>
-    </div>
+
+    <footer>
+        <?php
+            $file = __DIR__ . '/partials-dashboard/footer-dashboard.php';
+            if (file_exists($file)) {
+                require_once $file;
+            } else {
+                echo "Le fichier $file n'existe pas.";
+            }
+        ?>
+    </footer>
 </div>

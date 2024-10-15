@@ -1,3 +1,4 @@
+<!-- statistics-dashboard.php -->
 <head>
     <!-- Header and style -->
     <?php
@@ -171,3 +172,4 @@
         ?>
     </footer>
 </div>
+

@@ -1,3 +1,4 @@
+<!-- time-tracking-dashboard.php -->
 <head>
     <!-- Header and style -->
     <?php
@@ -32,7 +33,7 @@
     <div id="dashboard" class="content-section">
         <div class="row">
             <div class="col-md-8 offset-md-1 mt-4">
-                <h1 class="h2">Rapport task manager</h1>
+                <h1 class="h2">Time-Tracking task manager</h1>
             </div>
         </div>
     </div>
