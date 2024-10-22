@@ -51,4 +51,19 @@ project-task-manager/
     └── index.php                 # Point d'entrée principal de l'application
 
 
-![Logo](src/assets/images/image_1.jpg)
+![Logo](src/assets/images/img1.png)
+![Logo](src/assets/images/img2.png)
+![Logo](src/assets/images/img3.png)
+![Logo](src/assets/images/img4.png)
+![Logo](src/assets/images/img5.png)
+![Logo](src/assets/images/img6.png)
+![Logo](src/assets/images/img7.png)
+![Logo](src/assets/images/img8.png)
+![Logo](src/assets/images/img9.png)
+![Logo](src/assets/images/img10.png)
+![Logo](src/assets/images/img11.png)
+![Logo](src/assets/images/img12.png)
+![Logo](src/assets/images/img13.png)
+![Logo](src/assets/images/img14.png)
+![Logo](src/assets/images/img15.png)
+
