@@ -1,3 +1,5 @@
+===============================     # ARCHITECTURE PROJECT TASK MANAGER      ===============================
+
 project-task-manager/
 ├── src/
 │   ├── config.php                # Configuration générale de l'application
@@ -49,3 +51,4 @@ project-task-manager/
     └── index.php                 # Point d'entrée principal de l'application
 
 
+![Logo](src/assets/images/image_1.jpg)
