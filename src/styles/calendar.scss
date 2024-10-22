@@ -1,0 +1,58 @@
+   body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #calendar {
+            max-width: 100%;
+            margin: 20px auto;
+        }
+
+        .fc .fc-daygrid-day-number {
+            color: #007bff;
+        }
+
+        .fc .fc-event {
+            background-color: #007bff;
+            border: none;
+            color: white;
+        }
+
+        .fc .fc-event:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #218838;
+        }
+
+        .modal-header {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .modal-footer {
+            justify-content: space-between;
+        }
+
+        .add-event {
+            margin: 20px 0;
+            text-align: center;
+        }

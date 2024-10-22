@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <!-- Header and style -->
     <?php
@@ -18,159 +20,19 @@
             echo "Le fichier $file n'existe pas.";
         }
     ?>
-</head>
-
-<?php
-    require_once __DIR__ . '/partials-dashboard/navigation.php';
-?>
-<!-- Sidebar -->
-<?php renderSidebar(); ?>
+    
+    <!-- Sidebar -->
+    <?php
+        require_once __DIR__ . '/partials-dashboard/navigation.php';
+    ?>
+    <?php renderSidebar(); ?>
+    <!-- Fichier Scss -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>styles/integration.scss">
+</head> 
 
 <div class="container">
 
     <!-- Main Content -->
-    <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            margin-top: 20px;
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            border: none;
-        }
-
-        .btn-secondary:hover {
-            background-color: #5a6268;
-        }
-
-        .integration-list {
-            margin-top: 20px;
-        }
-
-        .integration-item {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #f8f9fa;
-        }
-
-        .integration-item h5 {
-            margin: 0;
-            color: #333;
-        }
-
-        .integration-item p {
-            margin: 5px 0;
-        }
-
-        .integration-item-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .integration-item-details p {
-            margin: 0;
-            padding-right: 15px;
-        }
-
-        .integration-item .buttons {
-            text-align: right;
-        }
-
-        .btn {
-            margin-left: 10px;
-        }
-
-        .title {
-            margin-left: 2rem;
-        }
-
-        .integration-list {
-            margin-left: 2rem; 
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            font-weight: bold;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-
-        #integrationForm {
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #modal {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            width: 400px;
-            text-align: center;
-        }
-
-        #modal h2 {
-            margin-bottom: 20px;
-        }
-
-        .modal-close {
-            cursor: pointer;
-            color: #007bff;
-        }
-    </style>
-</head>
-
 <body>
     <div id="overlay">
         <div id="modal">
@@ -237,37 +99,9 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('addIntegration').addEventListener('click', function () {
-            document.getElementById('overlay').style.display = 'flex';
-        });
-
-        document.querySelectorAll('.btn-danger').forEach(button => {
-            button.addEventListener('click', function () {
-                if (confirm('Voulez-vous vraiment supprimer cette intégration ?')) {
-                    alert('Intégration supprimée');
-                }
-            });
-        });
-
-        document.getElementById('saveIntegration').addEventListener('click', function () {
-            const name = document.getElementById('integrationName').value;
-            const status = document.getElementById('integrationStatus').value;
-            const description = document.getElementById('integrationDescription').value;
-
-            if (name && status && description) {
-                alert('Nouvelle intégration ajoutée');
-                document.getElementById('overlay').style.display = 'none';
-            } else {
-                alert('Veuillez remplir tous les champs');
-            }
-        });
-
-        document.getElementById('cancelIntegration').addEventListener('click', function () {
-            document.getElementById('overlay').style.display = 'none';
-        });
-    </script>
+ 
+    <!-- Fichier JS -->
+    <script src="<?php echo BASE_URL; ?>js/integration.js"></script>
 
     <footer>
         <?php

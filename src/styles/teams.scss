@@ -1,0 +1,63 @@
+ body {
+            background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table thead th {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        .table tbody td {
+            text-align: center;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover,
+        .btn-delete:hover {
+            opacity: 0.9;
+        }
+
+        .title {
+            margin-left: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #addMember {
+            margin-left: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #teamTable {
+           margin-left: 3rem;
+        }
+
+        .modal-header {
+            background-color: #007bff;
+            color: white;
+        }

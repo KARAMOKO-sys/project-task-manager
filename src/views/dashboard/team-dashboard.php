@@ -19,82 +19,18 @@
             echo "Le fichier $file n'existe pas.";
         }
     ?>
-</head>
 
-<?php
-    require_once __DIR__ . '/partials-dashboard/navigation.php';
-?>
-<!-- Sidebar -->
-<?php renderSidebar(); ?>
+     <!-- Fichier Scss -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>styles/settings.scss">
+
+    <?php
+        require_once __DIR__ . '/partials-dashboard/navigation.php';
+    ?>
+    <!-- Sidebar -->
+    <?php renderSidebar(); ?>
+</head>
 
 <div class="container">
-
-    <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .container {
-            margin-top: 20px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table thead th {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-        }
-
-        .table tbody td {
-            text-align: center;
-        }
-
-        .btn-custom {
-            background-color: #007bff;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-delete {
-            background-color: #dc3545;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-custom:hover,
-        .btn-delete:hover {
-            opacity: 0.9;
-        }
-
-        .title {
-            margin-left: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        #addMember {
-            margin-left: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        #teamTable {
-           margin-left: 3rem;
-        }
-
-        .modal-header {
-            background-color: #007bff;
-            color: white;
-        }
-    </style>
-</head>
 
 <body>
     <div class="container">
@@ -197,51 +133,7 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            var teamTable = $('#teamTable').DataTable({
-                ajax: {
-                    url: 'fetch-team.php',
-                    dataSrc: ''
-                },
-                columns: [
-                    { data: 'nom' },
-                    { data: 'role' },
-                    { data: 'email' },
-                    { data: 'telephone' },
-                    { data: 'adresse' },
-                    { data: null, render: function(data) {
-                        return '<button class="btn btn-custom btn-edit">Modifier</button> ' +
-                               '<button class="btn btn-delete btn-delete">Supprimer</button>';
-                    }}
-                ]
-            });
-
-            $('#addMember').click(function() {
-                $('#addMemberModal').modal('show');
-            });
-
-            $('#addMemberForm').submit(function(e) {
-                e.preventDefault();
-                // Logic to add member (e.g., AJAX request)
-                $('#addMemberModal').modal('hide');
-                // Reload table data
-                teamTable.ajax.reload();
-            });
-
-            $('#teamTable').on('click', '.btn-delete', function() {
-                var row = teamTable.row($(this).parents('tr'));
-                $('#confirmDeleteModal').modal('show');
-
-                $('#confirmDeleteBtn').off('click').on('click', function() {
-                    // Deletion logic here (e.g., AJAX request)
-                    row.remove().draw();
-                    $('#confirmDeleteModal').modal('hide');
-                });
-            });
-        });
-    </script>
-
+    <script src="<?php echo BASE_URL; ?>js/tasks.js"></script>
     <footer>
         <?php
             $file = __DIR__ . '/partials-dashboard/footer-dashboard.php';

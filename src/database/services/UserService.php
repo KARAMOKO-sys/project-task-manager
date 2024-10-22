@@ -8,6 +8,7 @@ use App\Exceptions\ServiceException;
 use DateTime;
 
 class UserService {
+    /**
 
     private $taskStastuesRepository;
 
@@ -80,6 +81,7 @@ public function deleteProject(int $id): bool {
         return false;
     }
 }
+*/
 }
 
 ?>

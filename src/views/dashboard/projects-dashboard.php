@@ -20,102 +20,16 @@
             echo "Le fichier $file n'existe pas.";
         }
     ?>
+    <!-- Fichier Scss -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>styles/projects.scss">
+
+    <?php
+        require_once __DIR__ . '/partials-dashboard/navigation.php';
+    ?>
+    <!-- Sidebar -->
+    <?php renderSidebar(); ?>
+
 </head>
-
-<?php
-    require_once __DIR__ . '/partials-dashboard/navigation.php';
-?>
-<!-- Sidebar -->
-<?php renderSidebar(); ?>
-
-<style>
-    body {
-        background-color: #f4f6f9;
-    }
-
-    .container {
-        margin-top: 20px;
-        padding: 20px;
-    }
-
-    h1 {
-        color: #333;
-        margin-bottom: 20px;
-    }
-
-    .chart-container {
-        margin: 20px 0;
-    }
-
-    .overview-box {
-        background-color: #007bff;
-        color: white;
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .overview-box i {
-        font-size: 2em;
-    }
-
-    .overview-box h2 {
-        margin: 15px 0;
-        font-size: 1.8em;
-    }
-
-    .overview-box p {
-        font-size: 1.2em;
-    }
-
-    .title {
-        margin-left: 5rem;
-    }
-
-    .boby-project {
-        margin-left: 10rem; 
-    }
-
-    .table {
-        width: 100%;
-        margin-top: 20px;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .table th, .table td {
-        padding: 15px;
-        text-align: center;
-        font-size: 1.1em;
-    }
-
-    .table thead {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-        background-color: #f9f9f9;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-    }
-
-    .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #0056b3;
-    }
-
-    .table-responsive {
-        margin-left: 7rem;
-    }
-</style>
-
 <body>
     <div class="container">
         <div class="title">
@@ -200,57 +114,8 @@
         </div>
     </div>
 
-    <script>
-        var ctx = document.getElementById('projectStatusChart').getContext('2d');
-        var projectStatusChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Projet 1', 'Projet 2', 'Projet 3', 'Projet 4'],
-                datasets: [{
-                    label: 'Projets terminés',
-                    data: [2, 3, 1, 5],
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 2
-                }, {
-                    label: 'Projets en cours',
-                    data: [3, 2, 4, 1],
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            borderDash: [5, 5]
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+    <!-- Fichier JS -->
+    <script src="<?php echo BASE_URL; ?>js/projects.js"></script>
 
     <footer>
         <?php

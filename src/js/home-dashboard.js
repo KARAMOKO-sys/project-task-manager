@@ -68,3 +68,39 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 });
+
+
+
+/**
+ ====================================================================================================================
+ */
+
+ var ctx = document.getElementById('performanceChart').getContext('2d');
+        var performanceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet'],
+                datasets: [{
+                    label: 'Projets terminés',
+                    data: [12, 19, 3, 5, 2, 3, 7],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }, {
+                    label: 'Tâches terminées',
+                    data: [10, 15, 13, 8, 10, 7, 9],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });

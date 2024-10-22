@@ -2,43 +2,43 @@
 
 namespace App\Services;
 
-use App\Repositories\TaskStastuesRepository;
+use App\Repositories\TeamsRepository;
 use TaskStastues;
 use App\Exceptions\ServiceException;
 use DateTime;
 
 class TeamsService {
 
-    private $taskStastuesRepository;
+    private $teamsRepository;
 
-    public function __construct(TaskStastuesRepository $taskStastuesRepository) {
-        $this->taskStastuesRepository = $taskStastuesRepository;
+    public function __construct(TeamsRepository $teamsRepository) {
+        $this->teamsRepository = $teamsRepository;
     }
 
     // Récupère tous les journaux d'activité
     public function getAllCategories(): array {
-        return $this->taskStastuesRepository->findAll();
+        return $this->teamsRepository->findAll();
     }
 
     // Récupère un projet par son ID
     public function getProjectById(int $id): ?TaskStastues {
-        $taskStastuesRepository = $this->taskStastuesRepository->findById($id);
+        $teamsRepository = $this->teamsRepository->findById($id);
 
-        if (!$taskStastuesRepository) {
+        if (!$teamsRepository) {
             throw new ServiceException("Task log with ID $id not found.");
         }
 
-        return $taskStastuesRepository;
+        return $teamsRepository;
     }
 
     // Crée un nouveau projet
     public function createProject(int $taskId, string $filePath, int $uploadedAt): bool {
         try {
-            $taskStastuesRepository = new TaskStastues();
-            $taskStastuesRepository->setTaskId($taskId);
-            $taskStastuesRepository->setFilePath($filePath);
-            $taskStastuesRepository->setUploadedAt($uploadedAt);
-            return $this->taskStastuesRepository->save($taskStastuesRepository);
+            $teamsRepository = new TaskStastues();
+            $teamsRepository->setTaskId($taskId);
+            $teamsRepository->setFilePath($filePath);
+            $teamsRepository->setUploadedAt($uploadedAt);
+            return $this->teamsRepository->save($teamsRepository);
         } catch (ServiceException $e) {
             // Gestion des erreurs: log l'erreur ou gérer selon la logique métier
             error_log("Error creating Comments log: " . $e->getMessage());
@@ -49,13 +49,13 @@ class TeamsService {
 // Met à jour un projet existant
 public function updateProject(int $id, int $taskId, string $filePath, int $uploadedAt): bool {
     try {
-        $taskStastuesRepository = $this->getProjectById($id);
+        $teamsRepository = $this->getProjectById($id);
 
-        if ($taskStastuesRepository) {
-            $taskStastuesRepository->setTaskId($taskId);
-            $taskStastuesRepository->setFilePath($filePath);
-            $taskStastuesRepository->setUploadedAt($uploadedAt);
-            return $this->taskStastuesRepository->update($taskStastuesRepository);
+        if ($teamsRepository) {
+            $teamsRepository->setTaskId($taskId);
+            $teamsRepository->setFilePath($filePath);
+            $teamsRepository->setUploadedAt($uploadedAt);
+            return $this->teamsRepository->update($teamsRepository);
         }
         return false;
     } catch (ServiceException $e) {
@@ -68,10 +68,10 @@ public function updateProject(int $id, int $taskId, string $filePath, int $uploa
 // Supprime un projet par son ID
 public function deleteProject(int $id): bool {
     try {
-        $taskStastuesRepository = $this->getProjectById($id);
+        $teamsRepository = $this->getProjectById($id);
 
-        if ($taskStastuesRepository) {
-            return $this->taskStastuesRepository->delete($id);
+        if ($teamsRepository) {
+            return $this->teamsRepository->delete($id);
         }
         return false;
     } catch (ServiceException $e) {

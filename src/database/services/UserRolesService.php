@@ -2,43 +2,43 @@
 
 namespace App\Services;
 
-use App\Repositories\TaskStastuesRepository;
+use App\Repositories\UserRolesRepository;
 use TaskStastues;
 use App\Exceptions\ServiceException;
 use DateTime;
 
 class UserRolesService {
 
-    private $taskStastuesRepository;
+    private $userRolesRepository;
 
-    public function __construct(TaskStastuesRepository $taskStastuesRepository) {
-        $this->taskStastuesRepository = $taskStastuesRepository;
+    public function __construct(UserRolesRepository $userRolesRepository) {
+        $this->userRolesRepository = $userRolesRepository;
     }
 
     // Récupère tous les journaux d'activité
     public function getAllCategories(): array {
-        return $this->taskStastuesRepository->findAll();
+        return $this->userRolesRepository->findAll();
     }
 
     // Récupère un projet par son ID
     public function getProjectById(int $id): ?TaskStastues {
-        $taskStastuesRepository = $this->taskStastuesRepository->findById($id);
+        $userRolesRepository = $this->userRolesRepository->findById($id);
 
-        if (!$taskStastuesRepository) {
+        if (!$userRolesRepository) {
             throw new ServiceException("Task log with ID $id not found.");
         }
 
-        return $taskStastuesRepository;
+        return $userRolesRepository;
     }
 
     // Crée un nouveau projet
     public function createProject(int $taskId, string $filePath, int $uploadedAt): bool {
         try {
-            $taskStastuesRepository = new TaskStastues();
-            $taskStastuesRepository->setTaskId($taskId);
-            $taskStastuesRepository->setFilePath($filePath);
-            $taskStastuesRepository->setUploadedAt($uploadedAt);
-            return $this->taskStastuesRepository->save($taskStastuesRepository);
+            $userRolesRepository = new TaskStastues();
+            $userRolesRepository->setTaskId($taskId);
+            $userRolesRepository->setFilePath($filePath);
+            $userRolesRepository->setUploadedAt($uploadedAt);
+            return $this->userRolesRepository->save($userRolesRepository);
         } catch (ServiceException $e) {
             // Gestion des erreurs: log l'erreur ou gérer selon la logique métier
             error_log("Error creating Comments log: " . $e->getMessage());
@@ -49,13 +49,13 @@ class UserRolesService {
 // Met à jour un projet existant
 public function updateProject(int $id, int $taskId, string $filePath, int $uploadedAt): bool {
     try {
-        $taskStastuesRepository = $this->getProjectById($id);
+        $userRolesRepository = $this->getProjectById($id);
 
-        if ($taskStastuesRepository) {
-            $taskStastuesRepository->setTaskId($taskId);
-            $taskStastuesRepository->setFilePath($filePath);
-            $taskStastuesRepository->setUploadedAt($uploadedAt);
-            return $this->taskStastuesRepository->update($taskStastuesRepository);
+        if ($userRolesRepository) {
+            $userRolesRepository->setTaskId($taskId);
+            $userRolesRepository->setFilePath($filePath);
+            $userRolesRepository->setUploadedAt($uploadedAt);
+            return $this->userRolesRepository->update($userRolesRepository);
         }
         return false;
     } catch (ServiceException $e) {
@@ -68,10 +68,10 @@ public function updateProject(int $id, int $taskId, string $filePath, int $uploa
 // Supprime un projet par son ID
 public function deleteProject(int $id): bool {
     try {
-        $taskStastuesRepository = $this->getProjectById($id);
+        $userRolesRepository = $this->getProjectById($id);
 
-        if ($taskStastuesRepository) {
-            return $this->taskStastuesRepository->delete($id);
+        if ($userRolesRepository) {
+            return $this->userRolesRepository->delete($id);
         }
         return false;
     } catch (ServiceException $e) {

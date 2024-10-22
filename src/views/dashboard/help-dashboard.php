@@ -19,61 +19,17 @@
             echo "Le fichier $file n'existe pas.";
         }
     ?>
-</head>
-
-<?php
+    <?php
     require_once __DIR__ . '/partials-dashboard/navigation.php';
-?>
-<!-- Sidebar -->
-<?php renderSidebar(); ?>
-
-<div class="container">
-
-    <!-- Main Content -->
-   <style>
-        body {
-            background-color: #f4f6f9;
-        }
-
-        .container {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .alert-info {
-            border-radius: 5px;
-        }
-
-        .section-title {
-            margin-top: 30px;
-            font-size: 1.8em;
-            color: #007bff;
-        }
-
-        .faq-item {
-            margin-bottom: 15px;
-        }
-    </style>
+    ?>
+    <!-- Sidebar -->
+    <?php renderSidebar(); ?>
+    <!-- Fichier Scss -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>styles/help.scss">
 </head>
 
+<!-- Main Content -->
+<div class="container">
 <body>
 
     <!-- Barre de navigation -->
@@ -132,12 +88,10 @@
         <button class="btn btn-outline-success">Formulaire de Contact</button>
     </div>
 
-    <script>
-        document.getElementById('viewHelp').addEventListener('click', function() {
-            alert('Redirection vers la documentation d\'aide.');
-            // Logique pour rediriger vers la documentation d'aide ici
-        });
-    </script>
+
+    
+    <!-- Fichier JS -->
+    <script src="<?php echo BASE_URL; ?>js/help.js"></script>
 
     <footer>
         <?php

@@ -19,86 +19,17 @@
             echo "Le fichier $file n'existe pas.";
         }
     ?>
-    <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: Arial, sans-serif;
-        }
 
-        .container {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .title {
-            margin-left: 3rem;
-            color: #333;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #007bff;
-        }
-
-        .task-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .task-table th, .task-table td {
-            border: 1px solid #dee2e6;
-            padding: 10px;
-            text-align: left;
-        }
-
-        .task-table th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-custom {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-custom:hover {
-            background-color: #218838;
-        }
-
-        .modal-header {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .modal-footer {
-            justify-content: space-between;
-        }
-
-        .modal-body {
-            margin: 20px;
-        }
-        .container {
-            margin-left: 20rem;
-            margin-top: 5rem;
-        }
-    </style>
-</head>
-
-<?php
+    <?php
     require_once __DIR__ . '/partials-dashboard/navigation.php';
-?>
-<!-- Sidebar -->
-<?php renderSidebar(); ?>
+    ?>
+    <!-- Sidebar -->
+    <?php renderSidebar(); ?>
+
+    <!-- Fichier Scss -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>styles/time-tracking.scss">
+  
+</head>
 
 <div class="container">
 
@@ -210,6 +141,8 @@
         </div>
     </div>
 
+    <script src="<?php echo BASE_URL; ?>js/time-tracking.js"></script>
+
     <footer>
         <?php
             $file = __DIR__ . '/partials-dashboard/footer-dashboard.php';
@@ -221,48 +154,3 @@
         ?>
     </footer>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const taskList = document.getElementById('taskList');
-        const saveTaskButton = document.getElementById('saveTask');
-
-        saveTaskButton.addEventListener('click', function() {
-            const title = document.getElementById('taskTitle').value;
-            const description = document.getElementById('taskDescription').value;
-            const startDate = document.getElementById('taskStartDate').value;
-            const endDate = document.getElementById('taskEndDate').value;
-            const status = document.getElementById('taskStatus').value;
-
-            if (title && description && startDate && endDate && status) {
-                const newRow = `
-                    <tr>
-                        <td>${Date.now()}</td>
-                        <td>${title}</td>
-                        <td>${description}</td>
-                        <td>${startDate}</td>
-                        <td>${endDate}</td>
-                        <td>${status}</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" onclick="editTask(this)">Modifier</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Supprimer</button>
-                        </td>
-                    </tr>
-                `;
-                taskList.insertAdjacentHTML('beforeend', newRow);
-                $('#addTaskModal').modal('hide');
-                document.getElementById('addTaskForm').reset();
-            }
-        });
-    });
-
-    function editTask(button) {
-        // Logic to edit the task
-        alert("Modification de la tâche");
-    }
-
-    function deleteTask(button) {
-        const row = button.closest('tr');
-        row.remove();
-    }
-</script>

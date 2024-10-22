@@ -18,107 +18,17 @@
             echo "Le fichier $file n'existe pas.";
         }
     ?>
-</head>
-
-<?php
+    <?php
     require_once __DIR__ . '/partials-dashboard/navigation.php';
-?>
-<!-- Sidebar -->
-<?php renderSidebar(); ?>
+    ?>
+    <!-- Sidebar -->
+    <?php renderSidebar(); ?>
+
+    <!-- Fichier Scss -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>styles/task.scss">
+</head>
 
 <div class="container">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-        }
-
-        .container {
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 1200px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .title {
-            margin-bottom: 20px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
-            padding: 0.5em 1em;
-            border-radius: 4px;
-            margin: 0 2px;
-            background-color: #007bff;
-            color: white;
-            transition: background-color 0.3s;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            background-color: #0056b3;
-        }
-
-        .dataTables_wrapper .dataTables_filter input {
-            border-radius: 4px;
-            border: 1px solid #ced4da;
-            padding: 0.5em;
-        }
-
-        .tableau {
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        table {
-            width: 100%;
-            font-size: 1.1em;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-        }
-
-        td {
-            text-align: center;
-        }
-
-        .add-task-btn {
-            margin-bottom: 20px;
-        }
-
-        .modal-body input,
-        .modal-body textarea {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .badge {
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-        }
-        .body-task {
-            margin-left: 10rem;
-        }
-    </style>
-</head>
 <div class="body-task">
   <body>
     <div class="container">
@@ -197,63 +107,7 @@
 </div>
 
 
-    <script>
-        $(document).ready(function() {
-            $('#taskTable').DataTable({
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/French.json'
-                }
-            });
-        });
-
-        function addTask() {
-            const taskName = $('#taskName').val();
-            const taskDescription = $('#taskDescription').val();
-            const dueDate = $('#dueDate').val();
-            const assignedTo = $('#assignedTo').val();
-            const taskPriority = $('#taskPriority').val();
-
-            const newRow = `<tr>
-                                <td>${taskName}</td>
-                                <td><span class="badge bg-warning text-dark">En cours</span></td>
-                                <td>${dueDate}</td>
-                                <td>${assignedTo}</td>
-                                <td><span class="badge bg-${getPriorityClass(taskPriority)}">${taskPriority}</span></td>
-                                <td>
-                                    <button class="btn btn-info btn-sm" onclick="editTask(this)">Modifier</button>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Supprimer</button>
-                                </td>
-                            </tr>`;
-            $('#taskTable tbody').append(newRow);
-            $('#addTaskModal').modal('hide');
-            $('#taskName').val('');
-            $('#taskDescription').val('');
-            $('#dueDate').val('');
-            $('#assignedTo').val('');
-            $('#taskPriority').val('Élevée');
-        }
-
-        function getPriorityClass(priority) {
-            switch (priority) {
-                case 'Élevée':
-                    return 'danger';
-                case 'Moyenne':
-                    return 'warning';
-                case 'Faible':
-                    return 'secondary';
-            }
-        }
-
-        function editTask(btn) {
-            alert('Modifier la tâche (fonctionnalité à implémenter)');
-        }
-
-        function deleteTask(btn) {
-            if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche?')) {
-                $(btn).closest('tr').remove();
-            }
-        }
-    </script>
+    <script src="<?php echo BASE_URL; ?>js/tasks.js"></script>
 
     <footer>
         <?php
